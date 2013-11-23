@@ -73,7 +73,7 @@ class RetryPolicySpec extends FunSpec with Matchers {
       counter shouldEqual 1
     }
 
-    it("should synchronously block between retry attempts") {
+    it("should synchronously back off between retry attempts") {
       val policy = RetryPolicy(LimitNumberOfAttempts(2), BackoffPolicy.Constant(1.second))
       val startAt = System.currentTimeMillis
       var counter = 0
@@ -134,7 +134,7 @@ class RetryPolicySpec extends FunSpec with Matchers {
       counter shouldEqual 1
     }
 
-    it("should asynchronously block between retry attempts") {
+    it("should asynchronously back off between retry attempts") {
       val policy = RetryPolicy(LimitNumberOfAttempts(2), BackoffPolicy.Constant(1.second))
       val startAt = System.currentTimeMillis
       @volatile var counter = 0

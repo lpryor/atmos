@@ -33,6 +33,15 @@ class TerminationPolicySpec extends FunSpec with Matchers {
   val attempts = 6
   val timeout = 6.seconds
   
+  describe("TerminationPolicy.ImmediatelyTerminate") {
+    it("should immediately signal for termination") {
+      val policy = ImmediatelyTerminate
+      policy.shouldTerminate(attempts / 2, timeout / 2) shouldEqual true
+      policy.shouldTerminate(attempts, timeout) shouldEqual true
+      policy.shouldTerminate(attempts * 2, timeout * 2) shouldEqual true
+    }
+  }
+  
   describe("TerminationPolicy.NeverTerminate") {
     it("should never signal for termination") {
       val policy = NeverTerminate

@@ -79,9 +79,11 @@ import scala.language.implicitConversions
  * Note that the `5.minutes` parameter is an instance of `scala.concurrent.duration.FiniteDuration` and that any
  * instance of this class may be used as a policy in `retryFor`.
  *
- * Finally, a retry policy that never terminates (unless directed to by an error classifier) can be created with
- * `retryForever`:
+ * Finally, a retry policy that immediately terminates can be created with `neverRetry` and a retry policy that never
+ * terminates (unless directed to by an error classifier) can be created with `retryForever`:
  * {{{
+ * implicit val retryPolicy = neverRetry
+ * 
  * implicit val retryPolicy = retryForever
  * }}}
  *
@@ -140,6 +142,9 @@ object RetryDSL {
   // Retry policy factories and extensions.
   //
 
+  /** Creates a new default retry policy that immediately terminates. */
+  def neverRetry: RetryPolicy = RetryPolicy(TerminationPolicy.ImmediatelyTerminate)
+
   /** Creates a new default retry policy. */
   def retrying: RetryPolicy = RetryPolicy()
 
@@ -150,7 +155,7 @@ object RetryDSL {
    */
   def retryFor(termination: TerminationPolicy): RetryPolicy = RetryPolicy(termination)
 
-  /** Creates a new default retry policy. */
+  /** Creates a new default retry policy that never terminates. */
   def retryForever: RetryPolicy = RetryPolicy(TerminationPolicy.NeverTerminate)
 
   /**
