@@ -1,5 +1,4 @@
-Atmos: Scala Utilities for the Cloud
-------------------------------------
+Please see http://zman.io/atmos for more information.
 
 Atmos is a Scala library for solving common problems encountered while working in the cloud.
 
