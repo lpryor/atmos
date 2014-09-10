@@ -1,4 +1,4 @@
-This project has moved to https://github.com/zmanio/atmos, this repository is a fork of an older version for archival. Please see http://zman.io/atmos for more information about the current version.
+**This project has moved to https://github.com/zmanio/atmos, this repository is a fork of an older version for archival purposes. Please see http://zman.io/atmos for more information about the current version.**
 
 Atmos is a Scala library for solving common problems encountered while working in the cloud.
 
